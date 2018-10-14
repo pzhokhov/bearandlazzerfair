@@ -20,9 +20,10 @@ def rsvp():
 def main():
     argparser = argparse.ArgumentParser()
     argparser.add_argument('--debug', action='store_true')
+    argparser.add_argument('--port', default=5000)
     args = argparser.parse_args()
 
-    app.run(host='0.0.0.0', debug=args.debug)
+    app.run(host='0.0.0.0', debug=args.debug, port=args.port)
 
 if __name__ == '__main__':
     main()
