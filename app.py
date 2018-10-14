@@ -1,4 +1,5 @@
 import flask
+import argparse
 
 app = flask.Flask('__name__')
 
@@ -10,9 +11,18 @@ def not_found(e):
 def index():
     return flask.render_template('index.j2')
 
+@app.route('/rsvp', methods=['POST'])
+def rsvp():
+    data = flask.request.json
+    print(data)
+    return "RSVPed"
 
 def main():
-    app.run(host='0.0.0.0')
+    argparser = argparse.ArgumentParser()
+    argparser.add_argument('--debug', action='store_true')
+    args = argparser.parse_args()
+
+    app.run(host='0.0.0.0', debug=args.debug)
 
 if __name__ == '__main__':
     main()
