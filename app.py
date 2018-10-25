@@ -1,3 +1,4 @@
+import os
 import flask
 import argparse
 
@@ -23,7 +24,13 @@ def main():
     argparser.add_argument('--port', default=5000)
     args = argparser.parse_args()
 
-    app.run(host='0.0.0.0', debug=args.debug, port=args.port)
+    ssl_cert = os.environ.get('SSL_CERT')
+    ssl_key = os.environ.get('SSL_KEY')
+
+    if ssl_cert is not None and ssl_key is not None:
+        ssl_context = (ssl_cert, ssl_key)
+    
+    app.run(host='0.0.0.0', debug=args.debug, port=args.port, ssl_context=ssl_context)
 
 if __name__ == '__main__':
     main()
