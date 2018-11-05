@@ -2,10 +2,7 @@ import os
 import flask
 import argparse
 
-from flask_sslify import SSLify
-
-app = flask.Flask('__name__')
-SSLify(app)
+app = flask.Flask(__name__)
 
 @app.errorhandler(404)
 def not_found(e):
@@ -31,11 +28,11 @@ def main():
     ssl_key = os.environ.get('SSL_KEY')
 
     ssl_context=None
-    if ssl_cert is not None and ssl_key is not None:
-        print('Using ssl cert from {}'.format(ssl_cert))
-        ssl_context = (ssl_cert, ssl_key)
+    # if ssl_cert is not None and ssl_key is not None:
+    #    print('Using ssl cert from {}'.format(ssl_cert))
+    #    ssl_context = (ssl_cert, ssl_key)
     
-    app.run(host='0.0.0.0', debug=args.debug, port=args.port, ssl_context=ssl_context)
+    app.run(host='localhost', debug=args.debug, port=args.port, ssl_context=ssl_context)
 
 if __name__ == '__main__':
     main()
