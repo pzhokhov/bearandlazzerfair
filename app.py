@@ -1,8 +1,10 @@
 import os
 import flask
 import argparse
+import yaml
 
 app = flask.Flask(__name__)
+GUESTLIST = []
 
 @app.errorhandler(404)
 def not_found(e):
@@ -12,27 +14,39 @@ def not_found(e):
 def index():
     return flask.render_template('index.j2')
 
+@app.route('/u/<key>')
+def index_with_key(key):
+    username = _validate_guest(key)
+    if username is None:
+        return not_found(None)
+
+    return flask.render_template('index.j2', user_key=key, user_name=username)
+
 @app.route('/rsvp', methods=['POST'])
 def rsvp():
     data = flask.request.json
     print(data)
     return "RSVPed"
 
+
+def _validate_guest(key):
+    for g in GUESTLIST:
+        if g['key'] == key:
+            return g['name']
+
+
 def main():
     argparser = argparse.ArgumentParser()
     argparser.add_argument('--debug', action='store_true')
     argparser.add_argument('--port', default=5000)
+    argparser.add_argument('--guests', default='guests.yaml')
     args = argparser.parse_args()
 
-    ssl_cert = os.environ.get('SSL_CERT')
-    ssl_key = os.environ.get('SSL_KEY')
+    with open(args.guests) as f:
+        for g in yaml.load(f):
+            GUESTLIST.append(g)
 
-    ssl_context=None
-    # if ssl_cert is not None and ssl_key is not None:
-    #    print('Using ssl cert from {}'.format(ssl_cert))
-    #    ssl_context = (ssl_cert, ssl_key)
-    
-    app.run(host='localhost', debug=args.debug, port=args.port, ssl_context=ssl_context)
+    app.run(host='localhost', debug=args.debug, port=args.port)
 
 if __name__ == '__main__':
     main()

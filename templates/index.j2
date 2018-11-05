@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-<link rel="icon" type="image/png" href="static/tree_favicon.png">
+<link rel="icon" type="image/png" href="/static/tree_favicon.png">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <style>
 body,h1,h2{font-family: "Raleway", sans-serif}
@@ -112,6 +112,7 @@ p {line-height: 2}
   </div>
 </div>
 <script>
+
 function hideRSVP(coming){
     $('#rsvpModalDiv').hide()
     data = {
@@ -125,6 +126,19 @@ function hideRSVP(coming){
         contentType: 'application/json',
     })
 }
+
+function storeKey() {
+    userKey = "{{ user_key }}"
+    userName = "{{ user_name }}"
+    if (userKey) {
+        console.log('Hi ' + userName)
+        window.localStorage.setItem('key', userKey)
+        window.localStorage.setItem('name', userName)
+        window.location = '/'
+    }
+}
+
+storeKey()
 
 </script
 
