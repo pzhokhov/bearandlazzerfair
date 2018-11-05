@@ -127,9 +127,14 @@ function rsvpClick() {
 
 function hideRSVP(coming){
     $('#rsvpModalDiv').hide()
+    userName = window.localStorage.getItem('name')
+    userKey = window.localStorage.getItem('key')
+
     data = {
         'name': $('#name_input').val(),
-        'coming': coming
+        'coming': coming,
+        'userName': userName,
+        'userKey': userKey
     }
 
     $.ajax('/rsvp', {

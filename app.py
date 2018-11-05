@@ -10,6 +10,10 @@ GUESTLIST = []
 def not_found(e):
     return flask.render_template('404.j2'), 404
 
+@app.errorhandler(403)
+def unauthorized(e):
+    return flask.render_template('403.j2'), 403
+
 @app.route('/')
 def index():
     return flask.render_template('index.j2')
@@ -18,7 +22,7 @@ def index():
 def index_with_key(key):
     username = _validate_guest(key)
     if username is None:
-        return not_found(None)
+        return unauthorized(None)
 
     return flask.render_template('index.j2', user_key=key, user_name=username)
 
@@ -26,8 +30,12 @@ def index_with_key(key):
 def rsvp():
     data = flask.request.json
     print(data)
-    return "RSVPed"
-
+    username = _validata_guest(data['userKey'])
+    if username == data['userName']:
+        # rsvp authorized 
+        return "RSVPed"
+    else:
+        return unauthorized(None)
 
 def _validate_guest(key):
     for g in GUESTLIST:
