@@ -86,7 +86,7 @@ p {line-height: 2}
   <h1>HOPE YOU CAN MAKE IT!</h1>
   <p class="w3-large">Kindly Respond By March, 2019</p>
   <p class="w3-xlarge">
-    <button onclick="document.getElementById('rsvpModalDiv').style.display='block'" class="w3-button w3-round w3-red w3-opacity w3-hover-opacity-off" style="padding:8px 60px">RSVP</button>
+    <button onclick="rsvpClick()" class="w3-button w3-round w3-red w3-opacity w3-hover-opacity-off" style="padding:8px 60px">RSVP</button>
   </p>
 </div>
 
@@ -113,6 +113,18 @@ p {line-height: 2}
 </div>
 <script>
 
+function rsvpClick() {
+    userKey = window.localStorage.getItem('key')
+    userName = window.localStorage.getItem('name')
+    if (userKey && userName) {
+        $('#name_input').val(userName)
+        $('#rsvpModalDiv').show()
+    } else {
+        alert('Please use the RSVP link in the email to RSVP!')
+    }
+}
+
+
 function hideRSVP(coming){
     $('#rsvpModalDiv').hide()
     data = {
@@ -134,7 +146,7 @@ function storeKey() {
         console.log('Hi ' + userName)
         window.localStorage.setItem('key', userKey)
         window.localStorage.setItem('name', userName)
-        window.location = '/'
+        // window.location = '/'
     }
 }
 
