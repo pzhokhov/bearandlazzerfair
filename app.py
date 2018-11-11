@@ -5,6 +5,7 @@ import yaml
 
 app = flask.Flask(__name__)
 GUESTLIST = []
+rsvp_filename = 'rsvps.yaml'
 
 @app.errorhandler(404)
 def not_found(e):
@@ -32,8 +33,13 @@ def rsvp():
     print(data)
     username = _validata_guest(data['userKey'])
     if username == data['userName']:
-        # rsvp authorized 
-        return "RSVPed"
+        # rsvp authorized
+        del data['userKey']
+        RSVP[username] = data
+        with open(rsvp_filename, 'w') as f:
+            f.write(yaml.dump(RSVP))
+
+        return "RSVPed succesfully"
     else:
         return unauthorized(None)
 
