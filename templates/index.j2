@@ -141,7 +141,17 @@ function hideRSVP(coming){
         method: 'POST',
         data: JSON.stringify(data),
         contentType: 'application/json',
+        success: () => rsvpSuccess(coming)
     })
+}
+
+function rsvpSuccess(coming) {
+    if (coming) {
+        var msg = "Yay! Looking forward to seeing you there!"
+    } else {
+        var msg = ":( Sad you cannot make it... If you reconsider, please use the same link!"
+    }
+    alert(msg)
 }
 
 function storeKey() {

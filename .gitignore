@@ -1,4 +1,6 @@
 lib/*
 guests.yaml
+rsvps.yaml
+rsvps.yaml.lock
 *.pyc
 .DS_Store

@@ -3,8 +3,11 @@ import flask
 import argparse
 import yaml
 
+from filelock import FileLock
+
 app = flask.Flask(__name__)
 GUESTLIST = []
+
 rsvp_filename = 'rsvps.yaml'
 
 @app.errorhandler(404)
@@ -31,13 +34,21 @@ def index_with_key(key):
 def rsvp():
     data = flask.request.json
     print(data)
-    username = _validata_guest(data['userKey'])
+    username = _validate_guest(data['userKey'])
     if username == data['userName']:
         # rsvp authorized
         del data['userKey']
-        RSVP[username] = data
-        with open(rsvp_filename, 'w') as f:
-            f.write(yaml.dump(RSVP))
+        with FileLock(rsvp_filename + '.lock'):
+            if os.path.exists(rsvp_filename):
+                with open(rsvp_filename, 'r') as f:
+                    rsvp_dict = yaml.load(f)
+            else:
+                rsvp_dict = {}
+
+            rsvp_dict[username] = data
+
+            with open(rsvp_filename, 'w') as f:
+                yaml.dump(rsvp_dict, f, default_flow_style=False)
 
         return "RSVPed succesfully"
     else:
