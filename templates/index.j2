@@ -81,7 +81,7 @@ p {line-height: 2}
 </div>
 
 <!-- RSVP section -->
-<div class="w3-container w3-padding-64 w3-pale-red w3-center w3-wide" id="rsvp">
+<div class="w3-container w3-padding-64 w3-pale-red w3-center w3-wide" id="rsvpDiv" hidden>
   <h1>HOPE YOU CAN MAKE IT!</h1>
   <p class="w3-large">Kindly Respond By March, 2019</p>
   <p class="w3-xlarge">
@@ -91,14 +91,28 @@ p {line-height: 2}
 
 <!-- RSVP modal -->
 <div id="rsvpModalDiv" class="w3-modal">
-  <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="padding:32px;max-width:600px">
+  <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="padding:32px;max-width:650px">
     <div class="w3-container w3-white w3-center">
       <h1 class="w3-wide">CAN YOU COME?</h1>
       <p>We really hope you can make it.</p>
-      <form>
+      <form id=rsvp_form>
         <input class="w3-input w3-border" type="text" placeholder="Name(s)" name="name" id=name_input>
+        <input class="w3-input w3-border" type="text" placeholder="Song requests (;-separated, e.g. Still D.R.E - Dr.Dre; Für Elise - L. v. Beethoven)" name="music" id=music_input>
+        <div class="w3-row">
+          <div class="w3-half">
+            Carpool with other guests? <br>
+              Yes, have a car <input type="radio" value="yescar"  name="carpoolRadio"><br>
+              Yes, don't have a car <input type="radio" value="yesnocar"  name="carpoolRadio"><br>
+              No <input type="radio" value="no"  name="carpoolRadio" checked>
+          </div>
+          <div class="w3-half">
+            Would like to come early (Friday)? <br>
+              Yes <input type="radio" value="yes"  name="earlyradio"><br>
+              No <input type="radio" value="no"  name="earlyRadio" checked>
+          </div>
+        </div>
       </form>
-      <p><i>Sincerely, Peter & Sasha</i></p>
+      <p><i>Sincerely, Sasha & Peter</i></p>
       <div class="w3-row">
         <div class="w3-half">
           <button onclick="hideRSVP(coming=true)" type="button" class="w3-button w3-block w3-green">Going</button>
@@ -110,6 +124,9 @@ p {line-height: 2}
     </div>
   </div>
 </div>
+
+
+
 <script>
 
 function rsvpClick() {
@@ -132,6 +149,9 @@ function hideRSVP(coming){
     data = {
         'name': $('#name_input').val(),
         'coming': coming,
+        'music': $('#music_input').val().split(';'),
+        'carpool': $('input:radio[name="carpoolRadio"]:checked').val(),
+        'come_early': $('input:radio[name="earlyRadio"]:checked').val(),
         'userName': userName,
         'userKey': userKey
     }
@@ -162,6 +182,10 @@ function storeKey() {
         window.localStorage.setItem('name', userName)
         // window.location = '/'
     }
+    if (window.localStorage.getItem('key')) {
+        $('#rsvpDiv').show()
+    }
+    
 }
 
 storeKey()
