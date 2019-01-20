@@ -85,8 +85,7 @@ def slacklink(data):
         return not_found(None)
 
     with open('slacklink.txt') as f:
-        link = f.read()
-    return {'slacklink': link} 
+        return f.read()
 
 
 def _validate_guest(key):
