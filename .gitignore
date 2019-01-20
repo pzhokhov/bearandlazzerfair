@@ -1,5 +1,6 @@
 lib/*
 guests.yaml
+slacklink.txt
 rsvps.yaml
 rsvps.yaml.lock
 *.pyc

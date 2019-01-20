@@ -19,8 +19,21 @@ def unauthorized(e):
     return flask.render_template('403.j2'), 403
 
 @app.route('/')
-def index():
+def pg_index():
     return flask.render_template('index.j2')
+
+@app.route('/rsvp')
+def pg_rsvp():
+    return flask.render_template('rsvp.j2')
+
+@app.route('/us')
+def pg_us():
+    return flask.render_template('us.j2')
+
+@app.route('/wedding')
+def pg_wedding():
+    return flask.render_template('wedding.j2')
+
 
 @app.route('/u/<key>')
 def index_with_key(key):
@@ -30,29 +43,51 @@ def index_with_key(key):
 
     return flask.render_template('index.j2', user_key=key, user_name=username)
 
-@app.route('/rsvp', methods=['POST'])
-def rsvp():
+@app.route('/api', methods=['POST'])
+def api_post():
     data = flask.request.json
     print(data)
     username = _validate_guest(data['userKey'])
     if username == data['userName']:
-        # rsvp authorized
-        del data['userKey']
-        with FileLock(rsvp_filename + '.lock'):
-            if os.path.exists(rsvp_filename):
-                with open(rsvp_filename, 'r') as f:
-                    rsvp_dict = yaml.load(f)
-            else:
-                rsvp_dict = {}
-
-            rsvp_dict[username] = data
-
-            with open(rsvp_filename, 'w') as f:
-                yaml.dump(rsvp_dict, f, default_flow_style=False)
-
-        return "RSVPed succesfully"
+        return get_method(data['method'])(data)
     else:
         return unauthorized(None)
+
+
+def rsvp(data):
+    username = data['userName']
+    del data['userKey']
+    with FileLock(rsvp_filename + '.lock'):
+        if os.path.exists(rsvp_filename):
+            with open(rsvp_filename, 'r') as f:
+                rsvp_dict = yaml.load(f)
+        else:
+            rsvp_dict = {}
+
+        rsvp_dict[username] = data
+
+        with open(rsvp_filename, 'w') as f:
+            yaml.dump(rsvp_dict, f, default_flow_style=False)
+
+    return "RSVPed succesfully"
+
+
+def get_method(method_name):
+    if method_name == 'rsvp':
+        return rsvp
+    elif method_name == 'slacklink':
+        return slacklink
+    else:
+        return not_found(None)
+
+def slacklink(data):
+    if not os.path.exists('slacklink.txt'):
+        return not_found(None)
+
+    with open('slacklink.txt') as f:
+        link = f.read()
+    return {'slacklink': link} 
+
 
 def _validate_guest(key):
     for g in GUESTLIST:

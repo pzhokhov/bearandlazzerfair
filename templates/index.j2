@@ -1,27 +1,15 @@
-<!DOCTYPE html>
-<html>
-<title>S & P</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-<link rel="icon" type="image/png" href="/static/tree_favicon.png">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+{% extends "base.j2" %}
+
+{% block content %}
 <style>
-body,h1,h2{font-family: "Raleway", sans-serif}
-body, html {height: 100%}
-p {line-height: 2}
-.bgimg, .bgimg2 {
+.bgimg {
     min-height: 100%;
     background-position: center;
     background-size: cover;
 }
 .bgimg {background-image: url("https://storage.googleapis.com/bearandlazzerfair-data/public/hawaii.jpg")}
-.bgimg2 {background-image: url("https://storage.googleapis.com/bearandlazzerfair-data/public/versaille.jpg")}
 </style>
-<body>
 
-<!-- Header / Home-->
 <header class="w3-display-container w3-wide bgimg w3-grayscale-min" id="home">
   <div class="w3-display-middle w3-text-white w3-center">
     <h1 class="w3-jumbo">Sasha & Peter</h1>
@@ -29,188 +17,6 @@ p {line-height: 2}
     <h2><b>9/1/2019</b></h2>
   </div>
 </header>
-
-<!-- Navbar (sticky bottom) -->
-<div class="w3-bottom w3-hide-small">
-  <div class="w3-bar w3-white w3-center w3-padding w3-opacity-min w3-hover-opacity-off">
-    <a href="#home" style="width:25%" class="w3-bar-item w3-button">Home</a>
-    <a href="#us" style="width:25%" class="w3-bar-item w3-button">Sasha & Peter</a>
-    <a href="#wedding" style="width:25%" class="w3-bar-item w3-button">Wedding</a>
-    <a href="#rsvp" style="width:25%" class="w3-bar-item w3-button w3-hover-black">RSVP</a>
-  </div>
-</div>
-
-<!-- About / Sasha And Peter -->
-<div class="w3-container w3-padding-64 w3-pale-red w3-grayscale-min" id="us">
-  <div class="w3-content">
-    <h1 class="w3-center w3-text-grey"><b>Sasha & Peter</b></h1>
-    <img class="w3-round w3-grayscale-min" src="https://storage.googleapis.com/bearandlazzerfair-data/public/dc.jpg" style="width:100%;margin:32px 0">
-    <p><i>
-       Sasha and Peter met when Peter was giving a seminar at Texas A&M OSA Student Chapter (OSA for the win!!!). Peter was presenting his research on filaments - a topic you can read about <a href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.110.183903">here</a> :)<br>
-       Sasha was deeply impressed by Peter's research. She asked a question, and Peter was impressed by her quick wit and beauty.    Their romance began. 6 years later, Sasha and Peter are throwing a giant party to celebrate their decision to live together happliy ever after, and invite you to join! <br>
-   </i></p><br>
-    <p class="w3-center"><a href="#wedding" class="w3-button w3-black w3-round w3-padding-large w3-large">Wedding Details</a></p>
-  </div>
-</div>
-
-<!-- Background photo -->
-<div class="w3-display-container bgimg2">
-  <div class="w3-display-middle w3-text-white w3-center">
-    <h1 class="w3-jumbo">You Are Invited</h1><br>
-    <h2>Of course...</h2>
-  </div>
-</div>
-
-<!-- Wedding information -->
-<div class="w3-container w3-padding-64 w3-pale-red w3-grayscale-min w3-center" id="wedding">
-  <div class="w3-content">
-    <h1 class="w3-text-grey"><b>THE WEDDING</b></h1>
-		(fair warning that their website is kind of hard to follow but should give you an idea of what to expect). 
-		<b> Lodging is included </b>, and consists of cabins. Unfortunately, no pets are allowed :(
-		</p>
-		<p>Please let us know if you would like to decline the provided cabin lodging and would instead 
-		prefer to camp or stay at a hotel nearby. We will do our best to accommodate specific cabin requests 
-		if you let us know by email.
-		<h2> Transportion </h2>
-		  <p> We will not lie to you, there’s no really convenient way to get to our wedding venue. The easiest (but most expensive) way is to fly directly into Redding Airport, rent a car, and drive 1.5 hours north. There are connecting flights to Redding which leave from SFO and are operated by United. For more information on how to get from the airports to the wedding venue, google maps Shasta Weddings – the GPS location is accurate. The 30 minute road leading to the venue from I-5 is *very* picturesque, but is unlit at night. </p>
-
-	<p>Other than that, Shasta Weddings is 6.5 hours south of Portland, 3.5 hours north of Sacramento Airport, and 4.5 hours north of SFO. We will definitely organize some carpools from SFO, and will try to organize something from Sacramento, but you should talk to us personally if this is an option you want more info about. If there is enough interest, we may rent a van.</p>	  
-
-		<h2> Things to do </h2>
-		
-<p> Hiking! Swimming! Board games! Smores! These are all planned activities at our wedding  <a href = https://smile.amazon.com/Day-Hiking-Trinity-Regions-Mountains-ebook/dp/B07CKDGVW1/ref=tmm_kin_swatch_0?_encoding=UTF8&qid=1547958119&sr=8-1> This </a> book describes several great hikes in the vicinity. The venue is directly adjacent to Castle Crags State Park and Trinity-Shasta National Forest. Further out are Lassen National Monument and Lassen Volcano National Park. There are many opportunities for day hikes and backcountry hikes, and we strongly suggest arriving with hiking and outdoor activities in mind. </p>
-
-	<div class="w3-row">
-      <div class="w3-half">
-	<h2>When</h2>
-        <p>Wedding Ceremony - 3:00pm</p>
-        <p>Reception starts just after ceremony - 3:45pm</p>
-      </div>
-      <div class="w3-half">
-        <h2>Where</h2>
-        <p>Castle Creek Rd, Castella, CA 96017 <a href="https://goo.gl/maps/zBcNWQaU2rA2">(map)</a></p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- RSVP section -->
-<div class="w3-container w3-padding-64 w3-pale-red w3-center w3-wide" id="rsvpDiv" hidden>
-  <h1>HOPE YOU CAN MAKE IT!</h1>
-  <p class="w3-large">Kindly Respond By March, 2019</p>
-  <p class="w3-xlarge">
-    <button onclick="rsvpClick()" class="w3-button w3-round w3-red w3-opacity w3-hover-opacity-off" style="padding:8px 60px">RSVP</button>
-  </p>
-</div>
-
-<!-- RSVP modal -->
-<div id="rsvpModalDiv" class="w3-modal">
-  <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="padding:32px;max-width:650px">
-    <div class="w3-container w3-white w3-center">
-      <h1 class="w3-wide">CAN YOU COME?</h1>
-      <p>We really hope you can make it.</p>
-      <form id=rsvp_form>
-        <input class="w3-input w3-border" type="text" placeholder="Name(s)" name="name" id=name_input>
-        <input class="w3-input w3-border" type="text" placeholder="Song requests (;-separated, e.g. Still D.R.E - Dr.Dre; Für Elise - L. v. Beethoven)" name="music" id=music_input>
-        <div class="w3-row">
-          <div class="w3-half">
-            Carpool with other guests? <br>
-              Yes, have a car <input type="radio" value="yescar"  name="carpoolRadio"><br>
-              Yes, don't have a car <input type="radio" value="yesnocar"  name="carpoolRadio"><br>
-              No <input type="radio" value="no"  name="carpoolRadio" checked>
-          </div>
-          <div class="w3-half">
-            Would like to come early (Friday)? <br>
-              Yes <input type="radio" value="yes"  name="earlyradio"><br>
-              No <input type="radio" value="no"  name="earlyRadio" checked>
-          </div>
-        </div>
-      </form>
-      <p><i>Sincerely, Sasha & Peter</i></p>
-      <div class="w3-row">
-        <div class="w3-half">
-          <button onclick="hideRSVP(coming=true)" type="button" class="w3-button w3-block w3-green">Going</button>
-        </div>
-        <div class="w3-half">
-          <button onclick="hideRSVP(coming=false)" type="button" class="w3-button w3-block w3-red">Can't come</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+{% endblock %}
 
 
-
-<script>
-
-function rsvpClick() {
-    userKey = window.localStorage.getItem('key')
-    userName = window.localStorage.getItem('name')
-    if (userKey && userName) {
-        $('#name_input').val(userName)
-        $('#rsvpModalDiv').show()
-    } else {
-        alert('Please use the RSVP link in the email to RSVP!')
-    }
-}
-
-
-function hideRSVP(coming){
-    $('#rsvpModalDiv').hide()
-    userName = window.localStorage.getItem('name')
-    userKey = window.localStorage.getItem('key')
-
-    data = {
-        'name': $('#name_input').val(),
-        'coming': coming,
-        'music': $('#music_input').val().split(';'),
-        'carpool': $('input:radio[name="carpoolRadio"]:checked').val(),
-        'come_early': $('input:radio[name="earlyRadio"]:checked').val(),
-        'userName': userName,
-        'userKey': userKey
-    }
-
-    $.ajax('/rsvp', {
-        method: 'POST',
-        data: JSON.stringify(data),
-        contentType: 'application/json',
-        success: () => rsvpSuccess(coming)
-    })
-}
-
-function rsvpSuccess(coming) {
-    if (coming) {
-        var msg = "Yay! Looking forward to seeing you there!"
-    } else {
-        var msg = ":( Sad you cannot make it... If you reconsider, please use the same link!"
-    }
-    alert(msg)
-}
-
-function storeKey() {
-    userKey = "{{ user_key }}"
-    userName = "{{ user_name }}"
-    if (userKey) {
-        console.log('Hi ' + userName)
-        window.localStorage.setItem('key', userKey)
-        window.localStorage.setItem('name', userName)
-        // window.location = '/'
-    }
-    if (window.localStorage.getItem('key')) {
-        $('#rsvpDiv').show()
-    }
-    
-}
-
-storeKey()
-
-</script
-
-<!-- Footer -->
-<footer class="w3-center w3-black w3-padding-16">
-  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
-</footer>
-<div class="w3-hide-small" style="margin-bottom:32px"> </div>
-
-</body>
-</html>
