@@ -35,16 +35,17 @@
       <p>We really hope you can make it.</p>
       <form id=rsvp_form>
         <input class="w3-input w3-border" type="text" placeholder="Name(s)" name="name" id=name_input>
+        <input class="w3-input w3-border" type="text" placeholder="+1's name. You don't have to bring a +1 if you don't want to :)" name="plusone_name" id=plusone_name_input hidden>
         <input class="w3-input w3-border" type="text" placeholder="Song requests (;-separated, e.g. Still D.R.E - Dr.Dre; Für Elise - L. v. Beethoven)" name="music" id=music_input>
         <div class="w3-row">
           <div class="w3-half">
-            Carpool with other guests? <br>
+            Would you like to carpool with other guests? <br>
               Yes, have a car <input type="radio" value="yescar"  name="carpoolRadio"><br>
               Yes, don't have a car <input type="radio" value="yesnocar"  name="carpoolRadio"><br>
               No <input type="radio" value="no"  name="carpoolRadio" checked>
           </div>
           <div class="w3-half">
-            Would like to come early (Friday)? <br>
+            Would you like to come early (Friday)? <br>
               Yes <input type="radio" value="yes"  name="earlyradio"><br>
               No <input type="radio" value="no"  name="earlyRadio" checked>
           </div>
@@ -72,6 +73,11 @@ function rsvpClick() {
     userName = window.localStorage.getItem('name')
     if (userKey && userName) {
         $('#name_input').val(userName)
+        if (userName.split('&').length > 1) {
+            $('#plusone_name_input').hide()
+        } else {
+            $('#plusone_name_input').show()
+        }
         $('#rsvpModalDiv').show()
     } else {
         alert('Please use the RSVP link in the email to RSVP!')
@@ -112,24 +118,10 @@ function rsvpSuccess(coming) {
     alert(msg)
 }
 
-function storeKey() {
-    userKey = "{{ user_key }}"
-    userName = "{{ user_name }}"
-    if (userKey) {
-        console.log('Hi ' + userName)
-        window.localStorage.setItem('key', userKey)
-        window.localStorage.setItem('name', userName)
-        // window.location = '/'
-    }
-    if (window.localStorage.getItem('key')) {
-        $('#rsvpDiv').show()
-    }
-    
-}
-
-storeKey()
-
 </script>
 {% endblock %}
 
+{% block js_invited %}
+$('#rsvpDiv').show()
+{% endblock %}
 

@@ -51,6 +51,8 @@ function storeKey() {
         $('#rsvpDiv').show()
         $('#rsvpNav').show()
         $('#slackNav').show()
+        {% block js_invited %}
+        {% endblock %}
     } else {
         $('#homeNav').css("width", "33%")
         $('#usNav').css("width", "33%")
@@ -58,6 +60,8 @@ function storeKey() {
         $('#rsvpDiv').hide()
         $('#rsvpNav').hide()
         $('#slackNav').hide()
+        {% block js_not_invited %}
+        {% endblock %}
     }
 }
 
@@ -79,8 +83,8 @@ function joinSlackClick() {
     })
 }
 
-storeKey();
 $('#slackNav').click(() => {joinSlackClick(); return false});
+$(document).ready(() => storeKey())
 </script>
 
 {% block content %}
