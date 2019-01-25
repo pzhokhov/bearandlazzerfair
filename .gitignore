@@ -5,3 +5,5 @@ rsvps.yaml
 rsvps.yaml.lock
 *.pyc
 .DS_Store
+misc/* 
+*.xls
