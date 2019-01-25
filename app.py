@@ -81,14 +81,21 @@ def get_method(method_name):
         return rsvp
     elif method_name == 'slacklink':
         return slacklink
+    elif method_name == 'registrylink':
+        return registrylink
     else:
         return not_found(None)
 
 def slacklink(data):
     if not os.path.exists('slacklink.txt'):
         return not_found(None)
-
     with open('slacklink.txt') as f:
+        return f.read()
+
+def registrylink(data):
+    if not os.path.exists('registrylink.txt'):
+        return not_found(None)
+    with open('registrylink.txt') as f:
         return f.read()
 
 

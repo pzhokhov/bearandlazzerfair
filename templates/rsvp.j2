@@ -34,9 +34,10 @@
       <h1 class="w3-wide">CAN YOU COME?</h1>
       <p>We really hope you can make it.</p>
       <form id=rsvp_form>
-        <input class="w3-input w3-border" type="text" placeholder="Name(s)" name="name" id=name_input>
-        <input class="w3-input w3-border" type="text" placeholder="+1's name. You don't have to bring a +1 if you don't want to :)" name="plusone_name" id=plusone_name_input hidden>
-        <input class="w3-input w3-border" type="text" placeholder="Song requests (;-separated, e.g. Still D.R.E - Dr.Dre; Für Elise - L. v. Beethoven)" name="music" id=music_input>
+        <input class="w3-input w3-border" type="text" placeholder="Name(s)" id=name_input>
+        <input class="w3-input w3-border" type="text" placeholder="+1's name. You don't have to bring a +1 if you don't want to :)" id=plusone_name_input hidden>
+        <input class="w3-input w3-border" type="text" placeholder="Song requests (;-separated, e.g. Still D.R.E - Dr.Dre; Für Elise - L. v. Beethoven)" id=music_input>
+        <input class="w3-input w3-border" type="text" placeholder="Food preferences / restrictions e.g. Hate asparagus!" id=foodpref>
         <div class="w3-row">
           <div class="w3-half">
             Would you like to carpool with other guests? <br>
@@ -95,6 +96,7 @@ function hideRSVP(coming){
         'name': $('#name_input').val(),
         'coming': coming,
         'music': $('#music_input').val().split(';'),
+        'food': $('#foodpref').val(),
         'carpool': $('input:radio[name="carpoolRadio"]:checked').val(),
         'come_early': $('input:radio[name="earlyRadio"]:checked').val(),
         'userName': userName,

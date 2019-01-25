@@ -61,7 +61,38 @@ We will likely drive up the evening of Friday Aug 30th, if you would like to com
         <p>Castle Creek Rd, Castella, CA 96017 <a href="https://goo.gl/maps/zBcNWQaU2rA2">(map)</a></p>
       </div>
     </div>
+    <p class="w3-center" id=registryP><a href="#" class="w3-button w3-black w3-round w3-padding-large w3-large" id=registryButton>Here's a link to our registry!</a></p>
   </div>
 </div>
+
+<script>
+function registryButtonClick() {
+    userName = window.localStorage.getItem('name')
+    userKey = window.localStorage.getItem('key')
+    data = {
+        'method': 'registrylink',
+        'userName': userName,
+        'userKey': userKey
+    }
+
+    $.ajax('/api', {
+        method: 'POST',
+        data: JSON.stringify(data),
+        contentType: 'application/json',
+        success: (link) => {window.location.href = link}
+    })
+}
+
+$('#registryButton').click(() => {registryButtonClick(); return false});
+</script>
+
+{% endblock %}
+
+{% block js_invited %}
+$('#registryP').show()
+{% endblock %}
+
+{% block js_not_invited %}
+$('#registryP').hide()
 {% endblock %}
 
