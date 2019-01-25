@@ -30,6 +30,10 @@ def pg_rsvp():
 def pg_us():
     return flask.render_template('us.j2')
 
+@app.route('/team')
+def pg_team():
+    return flask.render_template('team.j2')
+
 @app.route('/wedding')
 def pg_wedding():
     return flask.render_template('wedding.j2')
