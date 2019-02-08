@@ -48,10 +48,9 @@ def api_post():
     data = flask.request.json
     print(data)
     username = _validate_guest(data['userKey'])
-    if username == data['userName']:
-        return get_method(data['method'])(data)
-    else:
+    if username is None or username != data['userName']:
         return unauthorized(None)
+    return get_method(data['method'])(data)
 
 
 def rsvp(data):
