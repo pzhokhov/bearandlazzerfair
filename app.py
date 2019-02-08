@@ -26,10 +26,6 @@ def pg_index():
 def pg_rsvp():
     return flask.render_template('rsvp.j2')
 
-@app.route('/us')
-def pg_us():
-    return flask.render_template('us.j2')
-
 @app.route('/team')
 def pg_team():
     return flask.render_template('team.j2')
